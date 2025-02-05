@@ -72,6 +72,11 @@ Electron.ipcMain.on('update-apply', () => {
   autoUpdater.quitAndInstall();
 });
 
+Electron.ipcMain.on('check-for-updates', () => {
+  console.error('working');
+  triggerUpdateCheck();
+});
+
 function isLonghornUpdateInfo(info: UpdateInfo | LonghornUpdateInfo): info is LonghornUpdateInfo {
   return (info as LonghornUpdateInfo).nextUpdateTime !== undefined;
 }

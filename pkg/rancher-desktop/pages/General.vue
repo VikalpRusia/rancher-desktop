@@ -20,6 +20,7 @@
       :is-auto-update-locked="autoUpdateLocked"
       @enabled="onUpdateEnabled"
       @apply="onUpdateApply"
+      @check-for-updates="onUpdateCheck"
     />
     <hr>
     <telemetry-opt-in
@@ -99,6 +100,10 @@ export default {
     },
     onUpdateState(event, state) {
       this.$data.updateState = state;
+    },
+    onUpdateCheck() {
+      console.log('till here');
+      ipcRenderer.send('check-for-updates');
     },
     updateTelemetry(value) {
       ipcRenderer.invoke('settings-write', { application: { telemetry: { enabled: value } } });
